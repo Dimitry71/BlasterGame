@@ -6,6 +6,7 @@
 #include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "GameFramework/MovementComponent.h"
 #include "Projectile.generated.h"
 
 UCLASS()
@@ -39,11 +40,6 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	class UProjectileMovementComponent* ProjectileMovementComponent;
 private:
-	
-
-
-
-
 	UPROPERTY(EditAnywhere)
 	class UParticleSystem* Tracer;
 
