@@ -16,7 +16,10 @@ class BLASTER_API AProjectileWeapon : public AWeapon
 public:
 	virtual void Fire(const FVector& HitTarget) override;
 private:
-UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)
 	TSubclassOf<class AProjectile> ProjectileClass;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AProjectile> ServerSideRewindProjectileClass;
 	
 };

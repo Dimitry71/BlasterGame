@@ -5,16 +5,30 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "WeaponTypes.h"
+#include "Blaster/BlasterTypes/Team.h"
 #include "Weapon.generated.h"
+
+
 
 UENUM(BlueprintType)
 enum class EWeaponState : uint8
 {
 	EWS_Initial UMETA(DisplayName = "Initial State"),
 	EWS_Equipped UMETA(DisplayName = "Equipped"),
+	EWS_EquippedSecondary UMETA(DisplayName = "Equipped Secondary"),
 	EWS_Dropped UMETA(DisplayName = "Dropped"),
 
 	EWS_MAX UMETA(DisplayName = "DeafultMAX")
+};
+
+UENUM(BlueprintType)
+enum class EFireType : uint8
+{
+	EFT_HitScan UMETA(DisplayName = "Hit Scan Weapon"),
+	EFT_Projectile UMETA(DisplayName = "Projectile Weapon"),
+	EFT_Shotgun UMETA(DisplayName = "Shotgun Weapon"),
+	
+	EFT_MAX UMETA(DisplayName = "DeafultMAX")
 };
 UCLASS()
 class BLASTER_API AWeapon : public AActor
@@ -29,8 +43,9 @@ public:
 	virtual void OnRep_Owner() override;
 	void SetHUDAmmo();
 	virtual void Fire(const FVector& HitTarget);
-	void Dropped();
+	virtual void Dropped();
 	void AddAmmo(int32 AmmoToAdd);
+	FVector TraceEndWithScatter(const FVector& HitTarget);
 
 	UPROPERTY(EditAnywhere)
 	class USoundCue* EquipSound;
@@ -51,11 +66,26 @@ public:
 	UPROPERTY(EditAnywhere, Category = Crosshairs)
 	class UTexture2D* CrosshairsBottom;
 
+	/*
+	 * Enable or disable custom depth
+	 */
+	void EnableCustomDepth(bool bEnable);
+	bool bDestroyWeapon = false;
+	UPROPERTY(EditAnywhere)
+	EFireType FireType;
+
+	UPROPERTY(EditAnywhere, Category="Weapon Scatter")
+	bool bUseScatter = false;
+
 	
 	
 protected:
 	
 	virtual void BeginPlay() override;
+	virtual void OnWeaponStateSet();
+	virtual void OnEquipped();
+	virtual void OnDropped();
+	virtual void OnEquippedSecondary();
 	UFUNCTION()
 	virtual void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,UPrimitiveComponent* OtherComp,
 		int32 OtherBodyIndex, bool bFromSweep,const FHitResult& SweepResult);
@@ -67,8 +97,35 @@ protected:
 			UPrimitiveComponent* OtherComp,
 			int32 OtherBodyIndex
 	 );
+	
+	UFUNCTION()
+	void OnPingTooHigh(bool bPingTooHigh);
 
 	// Automatic Fire
+
+	
+	/*
+	 *Trace end with scatter
+	 */
+	UPROPERTY(EditAnywhere, Category="Weapon Scatter")
+	float DistanceToSphere = 800.f;
+
+	UPROPERTY(EditAnywhere, Category="Weapon Scatter")
+	float SphereRadius = 75.f;
+
+	UPROPERTY(EditAnywhere)
+	float Damage = 20.f;
+
+	UPROPERTY(EditAnywhere)
+	float HeadShotDamage = 40.f;
+
+	UPROPERTY(Replicated,EditAnywhere)
+	bool bUseServerSideRewind = false;
+
+	UPROPERTY()
+	class ABlasterCharacter* BlasterOwnerCharacter;
+	UPROPERTY()
+	class ABlasterPlayerController* BlasterOwnerController;
 	
 private:
 	UPROPERTY(VisibleAnywhere, Category= "Weapon Properties")
@@ -93,13 +150,20 @@ private:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class ACasing> CasingClass;
 
-	UPROPERTY(EditAnywhere,ReplicatedUsing=OnRep_Ammo)
+	UPROPERTY(EditAnywhere)
 	int32 Ammo;
-	
-	UFUNCTION()
-	void OnRep_Ammo();
 
+	
 	void SpendRound();
+
+	UFUNCTION(Client,Reliable)
+	void ClientUpdateAmmo(int32 ServerAmmo);
+	
+	UFUNCTION(Client,Reliable)
+	void ClientAddAmmo(int32 AmmoToAdd);
+
+	// Number of unprocessed server requests for Ammo.
+	int32 Sequence = 0;
 	
 	UPROPERTY(EditAnywhere)
 	int32 MagCapacity;
@@ -107,10 +171,10 @@ private:
 	UPROPERTY(EditAnywhere)
 	EWeaponType WeaponType;
 
-	UPROPERTY()
-	class ABlasterCharacter* BlasterOwnerCharacter;
-	UPROPERTY()
-	class ABlasterPlayerController* BlasterOwnerController;
+	UPROPERTY(EditAnywhere)
+	ETeam Team;
+
+
 	
 	// Zoomed FOV while aiming
 
@@ -120,20 +184,24 @@ private:
 	UPROPERTY(EditAnywhere)
 	float ZoomInterpSpeed = 20.f; 
 
-	
-	
 public:
 	void SetWeaponState(EWeaponState State);
 	FORCEINLINE  USphereComponent* GetSphereComponent() const {return AreaSphere;}
 	FORCEINLINE  USkeletalMeshComponent* GetWeaponMesh() const {return WeaponMesh;}
+	FORCEINLINE UWidgetComponent* GetPickupWidget() const {return PickupWidget;}
 	FORCEINLINE float GetZoomedFOV() const { return ZoomedFOV;}
 	FORCEINLINE float GetZoomInterpSpeed() const { return ZoomInterpSpeed;}
 	FORCEINLINE EWeaponType GetWeaponType() const { return WeaponType;}
 	FORCEINLINE int32 GetAmmo() const {return Ammo;}
 	FORCEINLINE int32 GetMagCapacity() const {return MagCapacity;}
+	FORCEINLINE float GetDamage() const { return Damage;}
+	FORCEINLINE float GetHeadShotDamage() const { return HeadShotDamage;}
+	FORCEINLINE ETeam GetTeam() const { return Team;}
 	bool IsEmpty();
+	bool IsFull();
 	UPROPERTY(EditAnywhere,Category= Combat)
 	float FireDelay = 0.15f;
 	UPROPERTY(EditAnywhere,Category= Combat)
 	bool bAutomatic = true;
+	
 };

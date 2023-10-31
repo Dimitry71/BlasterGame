@@ -20,14 +20,30 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void Destroyed() override;
 
-protected:
-	virtual void BeginPlay() override;
-
-	UFUNCTION()
-	virtual void OnHit(UPrimitiveComponent* HitComp,AActor* OtherActor,UPrimitiveComponent* OtherComp,FVector NormalImpulse, const FHitResult& Hit);
+	// Used with Server Side Rewind
+	bool bUseServerSideRewind = false;
+	FVector_NetQuantize TraceStart;
+	FVector_NetQuantize100 InitialVelocity;
+	
+	UPROPERTY(EditAnywhere)
+	float InitialSpeed = 15000;
 
 	UPROPERTY(EditAnywhere)
 	float Damage = 20.f;
+
+	UPROPERTY(EditAnywhere)
+	float HeadShotDamage = 40.f;
+
+protected:
+	virtual void BeginPlay() override;
+	void SpawnTrailSystem();
+	void StartDestroyTimer();
+	void DestroyTimerFinished();
+	void ExplodeDamage();
+	UFUNCTION()
+	virtual void OnHit(UPrimitiveComponent* HitComp,AActor* OtherActor,UPrimitiveComponent* OtherComp,FVector NormalImpulse, const FHitResult& Hit);
+
+	
 
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* ImpactParticles;
@@ -39,6 +55,19 @@ protected:
 
 	UPROPERTY(VisibleAnywhere)
 	class UProjectileMovementComponent* ProjectileMovementComponent;
+
+	UPROPERTY(EditAnywhere)
+	class UNiagaraSystem* TrailSystem;
+
+	UPROPERTY()
+	class UNiagaraComponent* TrailSystemComponent;
+
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* ProjectileMesh;
+	UPROPERTY(EditAnywhere)
+	float InnerDamage = 0.f;
+	UPROPERTY(EditAnywhere)
+	float OutherDamage = 0.f;
 private:
 	UPROPERTY(EditAnywhere)
 	class UParticleSystem* Tracer;
@@ -46,7 +75,10 @@ private:
 	UPROPERTY()
 	class UParticleSystemComponent* TracerComponent;
 
+	FTimerHandle DestroyTimer;
 	
+	UPROPERTY(EditAnywhere)
+	float DestroyTime = 3.f;
 
 	
 public:	

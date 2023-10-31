@@ -4,6 +4,7 @@
 #include "BlasterAnimInstance.h"
 
 #include "BlasterCharacter.h"
+#include "Blaster/BlasterComponent/CombatComponent.h"
 #include "Blaster/Weapon/Weapon.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -42,6 +43,7 @@ void UBlasterAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	TurningInPlace = BlasterCharacter->GetTurningInPlace();
 	bRotateRootBone = BlasterCharacter->ShouldRotateRootBone();
 	bElimmed = BlasterCharacter->IsElimmed();
+	bHoldingFlag = BlasterCharacter->IsHoldingFlag();
 	
 	// Offset Yaw for straifing
 	FRotator AimRotation = BlasterCharacter->GetBaseAimRotation();
@@ -82,8 +84,15 @@ void UBlasterAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		}
 	}
 
-	bUseFABRIK = BlasterCharacter->GetCombatState() !=ECombatState::ECS_Reloading;
-	bUseAimOffsets = BlasterCharacter->GetCombatState() !=ECombatState::ECS_Reloading && !BlasterCharacter->GetDisableGameplay();
-	bTranformRightHand = BlasterCharacter->GetCombatState() !=ECombatState::ECS_Reloading && !BlasterCharacter->GetDisableGameplay();
+	bUseFABRIK = BlasterCharacter->GetCombatState() == ECombatState::ECS_Unoccupied;
+	bool bFABRIKOverride = BlasterCharacter->IsLocallyControlled()
+	&& BlasterCharacter->GetCombatState() != ECombatState::ECS_ThrowingGrenade
+	&& BlasterCharacter->bFinishedSwapping;
+	if(bFABRIKOverride)
+	{
+		bUseFABRIK = !BlasterCharacter->IsLocallyReloading();
+	}
+	bUseAimOffsets = BlasterCharacter->GetCombatState() == ECombatState::ECS_Unoccupied && !BlasterCharacter->GetDisableGameplay();
+	bTranformRightHand = BlasterCharacter->GetCombatState() == ECombatState::ECS_Unoccupied && !BlasterCharacter->GetDisableGameplay() ;
 	
 }

@@ -77,5 +77,8 @@ private:
 	bool bUseAimOffsets;
 	UPROPERTY(BlueprintReadOnly,Category=Movement,meta =(AllowPrivateAccess = "true"))
 	bool bTranformRightHand;
+
+	UPROPERTY(BlueprintReadOnly,Category=Movement,meta =(AllowPrivateAccess = "true"))
+	bool bHoldingFlag;
 	
 };

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Blaster/GameState/BlasterGameState.h"
 #include "GameFramework/GameMode.h"
 #include "BlasterGameMode.generated.h"
 
@@ -26,6 +27,8 @@ class BLASTER_API ABlasterGameMode : public AGameMode
 	virtual void PlayerEliminated(class ABlasterCharacter* ElimmedCharacter, class ABlasterPlayerController* VictimController,
 		ABlasterPlayerController* AttackerController);
 	virtual void RequestRespawn(class ACharacter* ElimmedCharacter, AController* ElimmedController);
+	void PlayerLeftGame(ABlasterPlayerState* PlayerLeaving);
+	virtual float CalculateDamage(AController* Attacker , AController* Victim , float BaseDamage);
 	UPROPERTY(EditDefaultsOnly)
 	float WarmupTime = 10.f;
 	UPROPERTY(EditDefaultsOnly)
@@ -35,6 +38,8 @@ class BLASTER_API ABlasterGameMode : public AGameMode
 	float CooldownTime = 10.f;
 	
 	float LevelStartingTime = 0.f;
+
+	bool bTeamsMatch =  false;
 	
 protected:
 	virtual void BeginPlay() override;

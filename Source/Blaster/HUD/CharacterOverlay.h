@@ -19,9 +19,24 @@ public:
 	
 	UPROPERTY(meta=(BindWidget))
 	class UTextBlock* HealthText;
+	
+	UPROPERTY(meta=(BindWidget))
+    UProgressBar* ShieldBar;
+    	
+    UPROPERTY(meta=(BindWidget))
+    UTextBlock* ShieldText;
 
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* ScoreAmount;
+
+	UPROPERTY(meta=(BindWidget))
+	UTextBlock* BlueTeamScore;
+	
+	UPROPERTY(meta=(BindWidget))
+	UTextBlock* RedTeamScore;
+	
+	UPROPERTY(meta=(BindWidget))
+	UTextBlock* ScoreSpacerText;
 	
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* DefeatsAmount;
@@ -34,5 +49,16 @@ public:
 	
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* MatchCountdownText;
+	
+	UPROPERTY(meta=(BindWidget))
+    UTextBlock* GrenadeText;
+
+	UPROPERTY(meta=(BindWidget))
+	class UImage* HightPingImage;
+
+	UPROPERTY(meta=(BindWidgetAnim),Transient)
+	UWidgetAnimation* HighPingAnimation;
+
+	
 	
 };
