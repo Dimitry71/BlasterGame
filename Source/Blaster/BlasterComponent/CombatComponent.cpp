@@ -177,7 +177,6 @@ void UCombatComponent::FireHitScanWeapon()
 		HitTarget = EquippedWeapon->bUseScatter ? EquippedWeapon->TraceEndWithScatter(HitTarget) : HitTarget;
 		if(!Character->HasAuthority()) LocalFire(HitTarget);
 		ServerFire(HitTarget,EquippedWeapon->FireDelay);
-		
 	}
 }
 
@@ -472,6 +471,8 @@ void UCombatComponent::ServerShotgunFire_Implementation(const TArray<FVector_Net
 void UCombatComponent::ServerFire_Implementation(const FVector_NetQuantize& TraceHitTarget,float FireDelay)
 {	
 	MulticastFire(TraceHitTarget);
+	FString Messeage = FString("Server:Fire");
+	UE_LOG(LogTemp,Warning,TEXT("Server:Fire"));
 }
 
 bool UCombatComponent::ServerFire_Validate(const FVector_NetQuantize& TraceHitTarget, float FireDelay)
