@@ -55,8 +55,7 @@ void AShotgun::FireShotgun(const TArray<FVector_NetQuantize>& HitTargets)
 			FHitResult FireHit;
 			WeaponTraceHit(Start,HitTarget,FireHit);
 
-			ABlasterCharacter* BlasterCharacter = Cast<ABlasterCharacter>(FireHit.GetActor());
-			if (BlasterCharacter)
+			if (ABlasterCharacter* BlasterCharacter = Cast<ABlasterCharacter>(FireHit.GetActor()))
 			{
 				const bool bHeadShot = FireHit.BoneName.ToString() == FString("head");
 				if(bHeadShot)

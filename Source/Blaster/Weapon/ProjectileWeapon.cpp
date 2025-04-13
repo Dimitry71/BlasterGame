@@ -19,8 +19,8 @@ void AProjectileWeapon::Fire(const FVector& HitTarget)
 	if(MuzzleFlashSocket && World)
 	{
 		FTransform SocketTransform = MuzzleFlashSocket->GetSocketTransform(GetWeaponMesh());
-		FVector ToTarget = HitTarget - SocketTransform.GetLocation();
-		FRotator TargetRotation = ToTarget.Rotation();
+		const FVector ToTarget = HitTarget - SocketTransform.GetLocation();
+		const FRotator TargetRotation = ToTarget.Rotation();
 		FActorSpawnParameters SpawnParameters;
 		SpawnParameters.Owner = GetOwner();
 		SpawnParameters.Instigator = InstigatorPawn;

@@ -328,7 +328,7 @@ void AWeapon::Fire(const FVector& HitTarget)
 		const USkeletalMeshSocket* AmmoEjectSocket = WeaponMesh->GetSocketByName(FName("AmmoEject"));
 		if(AmmoEjectSocket)
 		{
-			FTransform SocketTransform = AmmoEjectSocket->GetSocketTransform(WeaponMesh);
+			const FTransform SocketTransform = AmmoEjectSocket->GetSocketTransform(WeaponMesh);
 			
 			UWorld* World = GetWorld();
 			if(World)
@@ -348,7 +348,7 @@ void AWeapon::Fire(const FVector& HitTarget)
 void AWeapon::Dropped()
 {
 	SetWeaponState(EWeaponState::EWS_Dropped);
-	FDetachmentTransformRules DetachmentRules(EDetachmentRule::KeepWorld,true);
+	const FDetachmentTransformRules DetachmentRules(EDetachmentRule::KeepWorld,true);
 	WeaponMesh->DetachFromComponent(DetachmentRules);
 	SetOwner(nullptr);
 	BlasterOwnerCharacter = nullptr;

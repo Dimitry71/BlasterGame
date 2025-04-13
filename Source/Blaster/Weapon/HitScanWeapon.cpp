@@ -104,7 +104,7 @@ void AHitScanWeapon::WeaponTraceHit(const FVector& TraceStart,const FVector& Hit
 	UWorld* World = GetWorld();
 	if(World)
 	{
-		FVector End = TraceStart + (HitTarget - TraceStart) * 1.25f;
+		const FVector End = TraceStart + (HitTarget - TraceStart) * 1.25f;
 		World->LineTraceSingleByChannel(
 				OutHit,
 				TraceStart,
