@@ -1,76 +1,62 @@
-# BlasterGame
- Third Person Multiplayer Shooter
- 
- Overview
+# Blaster Game (Unreal Engine 5)
 
-Multiplayer Third-Person Shooter is a fast-paced online game built in Unreal Engine 5. Featuring fluid third-person action, responsive shooting mechanics, and team-based gameplay, this project is designed to deliver an immersive multiplayer experience.
+Blaster Game — це 3D-гра, розроблена на Unreal Engine 5. Проєкт має адаптивний UI, підтримує пакування для Windows та інших платформ. Цей репозиторій містить код, ресурси, документацію для розробників та інструкції для розгортання.
 
-Features
+## 📦 Вміст репозиторію
 
-Multiplayer Support – Seamless online gameplay with dedicated server support.
+- `BlasterGame/` — основний код проєкту UE5
+- `docs/` — документація (deployment, update, backup, scripts)
+- `Saved/`, `Intermediate/` — автоматично створювані UE5 директорії (ігноруються в Git)
 
-Third-Person Perspective – Smooth camera system for dynamic combat.
+## 🧰 Необхідні інструменти
 
-Advanced Shooting Mechanics – Realistic weapon handling, recoil, and aiming.
+Перед початком роботи, переконайтесь, що у вас встановлені наступні компоненти:
 
-Customizable Characters – Various skins and loadouts for player customization.
+- [Unreal Engine 5.3+](https://www.unrealengine.com/)
+- [JetBrains Rider з Unreal плагіном](https://www.jetbrains.com/rider/)
+- Git
+- Visual Studio 2022 (із компонентами C++ та Game Development)
+- CMake (опціонально, для кастомних збірок)
 
-Team-Based Gameplay – Competitive modes like Team Deathmatch and Capture the Flag.
+## 🚀 Як запустити проєкт (розробнику)
 
-Dynamic Environments – Interactive maps with destructible elements.
+1. **Клонувати репозиторій**
+    ```bash
+    git clone https://gitlab.com/your-username/blaster-game.git
+    cd blaster-game
+    ```
 
-Optimized Netcode – Lag compensation and prediction for a smooth experience.
+2. **Відкрити проєкт у Rider або UE5 Editor**
+    - Відкрий `BlasterGame.uproject` у Unreal Editor
+    - Або імпортуй у JetBrains Rider
 
-Technologies Used
+3. **Побудувати проєкт**
+    - Через UE5: `File → Generate Visual Studio project files`, далі `Build`
+    - Через Rider: `Build → Build Solution`
 
-Unreal Engine 5 – High-quality rendering and physics.
+4. **Запустити гру**
+    - В Editor: натисни `Play`
+    - Для окремого вікна: `Play → Standalone Game`
 
-C++ & Blueprints – Hybrid development for flexibility and performance.
+## 🛠 Базові команди
 
-Replication System – Reliable multiplayer architecture.
+- **Очищення тимчасових файлів:**
+    ```bash
+    ./docs/scripts/clean-temp.sh
+    ```
+- **Збірка гри:**
+    ```bash
+    ./docs/scripts/build-project.sh
+    ```
 
-Niagara VFX – High-quality visual effects.
+## 🗃 Структура проєкту
 
-Animation Blueprint – Smooth character movements and transitions.
+- `Content/` — візуальні/аудіо ресурси
+- `Source/` — C++ код
+- `Config/` — налаштування проєкту
+- `Docs/` — технічна документація
+- `.uproject` — файл конфігурації Unreal Engine
 
-Installation
+## 📄 Ліцензія
 
-Clone the repository:
-
-git clone https://github.com/yourusername/multiplayer-shooter.git
-
-Open the project in Unreal Engine 5.
-
-Configure the game mode and network settings.
-
-Press Play to test locally or set up a dedicated server.
-
-How to Play
-
-WASD – Move character
-
-Mouse – Aim and shoot
-
-Space – Jump
-
-Shift – Sprint
-
-R – Reload weapon
-
-Future Improvements
-
-Ranked matchmaking system.
-
-Additional weapon classes and attachments.
-
-More game modes (Battle Royale, Survival, etc.).
-
-AI-powered bots for offline practice.
-
-Contributing
-
-If you want to contribute to the project, feel free to submit a pull request or report issues.
-
-License
-
-This project is released under the MIT License. See LICENSE for details.
+Проєкт створено в рамках бакалаврської роботи. Ліцензія — навчальна/університетська. Усі права захищено.
