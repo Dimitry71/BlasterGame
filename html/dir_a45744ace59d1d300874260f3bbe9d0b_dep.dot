@@ -1,0 +1,24 @@
+digraph "Source/Blaster/PlayerController"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_4121c79a821224129df0061c86905b7d {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="Blaster", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_4121c79a821224129df0061c86905b7d.html",tooltip=""]
+  dir_0c210e9389d33c035adc768c82688335 [label="GameState", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_0c210e9389d33c035adc768c82688335.html",tooltip=""];
+  dir_a6d6cd5d58a3e83c8d9b6889c58938d5 [label="Character", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_a6d6cd5d58a3e83c8d9b6889c58938d5.html",tooltip=""];
+  dir_7476cc66d3b2a0b53f26de0d570b35f6 [label="GameMode", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_7476cc66d3b2a0b53f26de0d570b35f6.html",tooltip=""];
+  dir_2df345edaf8e28c812a2181ec1a08c35 [label="HUD", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_2df345edaf8e28c812a2181ec1a08c35.html",tooltip=""];
+  dir_56f35a6f47df4af5c08b7280b1fb8e3b [label="PlayerState", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_56f35a6f47df4af5c08b7280b1fb8e3b.html",tooltip=""];
+  dir_573b6b75bcbec462e6b07449be71382e [label="BlasterTypes", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_573b6b75bcbec462e6b07449be71382e.html",tooltip=""];
+  dir_a45744ace59d1d300874260f3bbe9d0b [label="PlayerController", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_a45744ace59d1d300874260f3bbe9d0b.html",tooltip=""];
+  }
+  dir_a45744ace59d1d300874260f3bbe9d0b->dir_0c210e9389d33c035adc768c82688335 [headlabel="1", labeldistance=1.5 headhref="dir_000010_000006.html" href="dir_000010_000006.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_a45744ace59d1d300874260f3bbe9d0b->dir_2df345edaf8e28c812a2181ec1a08c35 [headlabel="4", labeldistance=1.5 headhref="dir_000010_000007.html" href="dir_000010_000007.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_a45744ace59d1d300874260f3bbe9d0b->dir_56f35a6f47df4af5c08b7280b1fb8e3b [headlabel="1", labeldistance=1.5 headhref="dir_000010_000012.html" href="dir_000010_000012.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_a45744ace59d1d300874260f3bbe9d0b->dir_573b6b75bcbec462e6b07449be71382e [headlabel="1", labeldistance=1.5 headhref="dir_000010_000002.html" href="dir_000010_000002.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_a45744ace59d1d300874260f3bbe9d0b->dir_7476cc66d3b2a0b53f26de0d570b35f6 [headlabel="1", labeldistance=1.5 headhref="dir_000010_000005.html" href="dir_000010_000005.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_a45744ace59d1d300874260f3bbe9d0b->dir_a6d6cd5d58a3e83c8d9b6889c58938d5 [headlabel="1", labeldistance=1.5 headhref="dir_000010_000004.html" href="dir_000010_000004.html" color="steelblue1" fontcolor="steelblue1"];
+}

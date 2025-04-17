@@ -1,0 +1,13 @@
+digraph "AHitScanWeapon::Fire"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="AHitScanWeapon::Fire",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="AWeapon::GetWeaponMesh",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_a_weapon.html#a9b0a1168c2a57113757440cb2f2fdbbb",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="AHitScanWeapon::WeaponTraceHit",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_a_hit_scan_weapon.html#a3c2fa2f963af5ea70ff5b31ac7f19577",tooltip=" "];
+}

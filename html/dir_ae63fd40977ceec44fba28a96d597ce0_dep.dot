@@ -1,0 +1,18 @@
+digraph "Source/Blaster/Pickups"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_4121c79a821224129df0061c86905b7d {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="Blaster", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_4121c79a821224129df0061c86905b7d.html",tooltip=""]
+  dir_2e950cb8ae3b4d23043648c6c46211cb [label="Weapon", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_2e950cb8ae3b4d23043648c6c46211cb.html",tooltip=""];
+  dir_a6d6cd5d58a3e83c8d9b6889c58938d5 [label="Character", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_a6d6cd5d58a3e83c8d9b6889c58938d5.html",tooltip=""];
+  dir_4cd0e88ee1a514c1044f0caf377c2908 [label="BlasterComponent", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_4cd0e88ee1a514c1044f0caf377c2908.html",tooltip=""];
+  dir_ae63fd40977ceec44fba28a96d597ce0 [label="Pickups", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_ae63fd40977ceec44fba28a96d597ce0.html",tooltip=""];
+  }
+  dir_ae63fd40977ceec44fba28a96d597ce0->dir_2e950cb8ae3b4d23043648c6c46211cb [headlabel="2", labeldistance=1.5 headhref="dir_000009_000014.html" href="dir_000009_000014.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_ae63fd40977ceec44fba28a96d597ce0->dir_4cd0e88ee1a514c1044f0caf377c2908 [headlabel="5", labeldistance=1.5 headhref="dir_000009_000001.html" href="dir_000009_000001.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_ae63fd40977ceec44fba28a96d597ce0->dir_a6d6cd5d58a3e83c8d9b6889c58938d5 [headlabel="5", labeldistance=1.5 headhref="dir_000009_000004.html" href="dir_000009_000004.html" color="steelblue1" fontcolor="steelblue1"];
+}

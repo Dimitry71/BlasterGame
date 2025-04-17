@@ -1,0 +1,15 @@
+digraph "ABlasterPlayerController::OnPossess"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="ABlasterPlayerController\l::OnPossess",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="ABlasterCharacter::\lGetHealth",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_a_blaster_character.html#af8e31c82a927268b4d530d15e1bd87a1",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="ABlasterCharacter::\lGetMaxHealth",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_a_blaster_character.html#a23048349a09c476c7f76b86f019d8e36",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="ABlasterPlayerController\l::SetHUDHealth",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_a_blaster_player_controller.html#ae6e8dbe5d6a7fd423be9467b526e9380",tooltip=" "];
+}
